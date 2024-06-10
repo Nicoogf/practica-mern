@@ -1,14 +1,21 @@
 "use client";
 
-import { useForm } from "react-hook-form"
-import { registerRequest } from "../api/auth";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../context/authContext";
+import { useEffect } from "react";
+import { useRouter } from 'next/navigation'
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm()
+  const { singUp, isAuthenticated } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isAuthenticated) router.push("/tasks")
+  }, [isAuthenticated])
 
   const onSubmit = handleSubmit(async (values) => {
-    const res = await registerRequest(values)
-    console.log(res)
+    singUp(values)
   })
 
   return (
