@@ -79,7 +79,7 @@ const RegisterPage = () => {
       <p className='text-sm text-gray-200'> 
         Ya tienes una cuenta 
         <Link href="/loguin">  
-        <span className="text-blue-400">Ingresa </span>
+        <span className="text-blue-400 mx-4">Ingresa </span>
         </Link>
         </p> 
 

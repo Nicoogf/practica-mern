@@ -35,7 +35,11 @@ export const AuthProvider = ({ children }) => {
         const res = await loguinRequest (user)
         console.log(res)
         } catch (error) {
-            setErrors(error.response.data)
+            if( Array.isArray(error.response.data)){
+             setErrors(error.response.data)
+            }
+            setErrors([error.response.data.message])
+           
         }
         
     }

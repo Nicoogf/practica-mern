@@ -58,7 +58,7 @@ const LoguinPage = () => {
         <p className='text-sm text-gray-200'> 
         No tienes una cuenta ? 
         <Link href="/register">  
-        <span className="text-blue-400"> Crea una </span>
+        <span className="text-blue-400 mx-4"> Crea una </span>
         </Link>
         </p> 
     

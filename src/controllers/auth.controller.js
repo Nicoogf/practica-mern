@@ -43,7 +43,7 @@ export const loguin = async (req, res) => {
 
         const isMatch = await bcrypt.compare(password, UserFound.password)
 
-        if (!isMatch) return res.status(400).json({ message: "Credenciales incorrectas, entro por pass" })
+        if (!isMatch) return res.status(400).json({ message: "Credenciales incorrectas" })
 
         const token = await createAccessToken({ id: UserFound._id })
 
