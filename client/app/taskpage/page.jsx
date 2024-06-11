@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ProfilePage = () => {
+const TaskPage  = () => {
   return (
     <div>page</div>
   )
 }
 
-export default ProfilePage
+export default TaskPage
