@@ -1,22 +1,23 @@
 "use client";
 
 import React, { useState, createContext, useContext, useEffect } from 'react';
-import { registerRequest , loguinRequest } from '../api/auth';
+import { registerRequest, loguinRequest } from '../api/auth';
+import Cookies from "js-cookie"
 
-const AuthContext = createContext() ;
+const AuthContext = createContext();
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
-    if(!context){
+    if (!context) {
         throw new Error("useAuth debe estar dentro del AuthProvider")
     }
     return context
-} 
+}
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [ isAuthenticated, setIsAuthenticated ] = useState( false )
-    const [ errors , setErrors ] = useState([])
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [errors, setErrors] = useState([])
 
     const signup = async (user) => {
         try {
@@ -24,34 +25,40 @@ export const AuthProvider = ({ children }) => {
             console.log(res.data)
             setUser(res.data)
             setIsAuthenticated(true)
-        } catch (error) {            
+        } catch (error) {
             setErrors(error.response.data)
             console.log(error)
         }
     }
 
-    const signin = async( user ) => {
+    const signin = async (user) => {
         try {
-        const res = await loguinRequest (user)
-        console.log(res)
+            const res = await loguinRequest(user)
+            console.log(res)
+            setIsAuthenticated(true)
+            setUser(res.data)
         } catch (error) {
-            if( Array.isArray(error.response.data)){
-             setErrors(error.response.data)
+            if (Array.isArray(error.response.data)) {
+                setErrors(error.response.data)
             }
             setErrors([error.response.data.message])
-           
         }
-        
     }
 
-    useEffect(()=> {
-        if(errors.length > 0){
-          const timer =  setTimeout(()=>{
+    useEffect(() => {
+        if (errors.length > 0) {
+            const timer = setTimeout(() => {
                 setErrors([])
-            } , 5000 )
-            return() => clearTimeout(timer)
+            }, 5000)
+            return () => clearTimeout(timer)
         }
-    }, [errors] )
+    }, [errors])
+
+    useEffect(() => {
+      const cookies = Cookies.get()
+      if(cookies.token)
+      console.log(cookies.token)
+    } , [])
 
     return (
         <AuthContext.Provider value={{

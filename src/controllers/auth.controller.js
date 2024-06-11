@@ -47,7 +47,7 @@ export const loguin = async (req, res) => {
 
         const token = await createAccessToken({ id: UserFound._id })
 
-        res.cookie("token", token)
+        res.cookie("token", token )
 
         res.json({
             id: UserFound._id,
