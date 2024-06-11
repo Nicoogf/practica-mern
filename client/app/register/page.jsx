@@ -27,7 +27,9 @@ const RegisterPage = () => {
   })
 
   return (
-    <main>
+    <main  className='flex flex-col justify-center items-center h-screen'>
+
+    <h1 className='font-bold text-2xl'> Registro </h1>
 
       {
       registerErrors.map((error ,i )=> (
@@ -69,7 +71,7 @@ const RegisterPage = () => {
           )}
 
 
-        <button className="bg-blue-500 text-white font-bold block w-[30%] max-w-[200px] mx-auto rounded-md py-2"> Registrar Usuario </button>
+        <button className="bg-blue-500 text-white font-bold block w-[200px] mx-auto rounded-md py-2"> Registrar Usuario </button>
 
       </form>
     </main>
