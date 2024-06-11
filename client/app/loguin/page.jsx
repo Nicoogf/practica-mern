@@ -2,6 +2,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../context/authContext';
+import Link from 'next/link';
 
 const LoguinPage = () => {
 
@@ -53,6 +54,14 @@ const LoguinPage = () => {
         <button className="bg-blue-500 text-white font-bold block w-[200px] mx-auto rounded-md py-2"> Ingresar </button>
 
       </form>
+
+        <p className='text-sm text-gray-200'> 
+        No tienes una cuenta ? 
+        <Link href="/register">  
+        <span className="text-blue-400"> Crea una </span>
+        </Link>
+        </p> 
+    
 
     </div>
   )

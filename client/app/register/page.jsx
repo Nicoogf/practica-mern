@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/authContext";
 import { useEffect } from "react";
 import { useRouter } from 'next/navigation'
+import Link from "next/link";
 
 const RegisterPage = () => {
 
@@ -74,6 +75,14 @@ const RegisterPage = () => {
         <button className="bg-blue-500 text-white font-bold block w-[200px] mx-auto rounded-md py-2"> Registrar Usuario </button>
 
       </form>
+
+      <p className='text-sm text-gray-200'> 
+        Ya tienes una cuenta 
+        <Link href="/loguin">  
+        <span className="text-blue-400">Ingresa </span>
+        </Link>
+        </p> 
+
     </main>
   )
 }
