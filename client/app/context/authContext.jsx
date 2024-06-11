@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, createContext, useContext } from 'react';
 import { registerRequest } from '../api/auth';
 
@@ -15,24 +16,26 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [ isAuthenticated, setIsAuthenticated ] = useState( false )
+    const [ errors , setErrors ] = useState([])
 
-    const singUp = async (user) => {
+    const signup = async (user) => {
         try {
             const res = await registerRequest(user)
             console.log(res.data)
             setUser(res.data)
             setIsAuthenticated(true)
-        } catch (error) {
+        } catch (error) {            
+            setErrors(error.response.data)
             console.log(error)
         }
-    
     }
 
     return (
         <AuthContext.Provider value={{
-            singUp,
+            signup,
             user,
-            isAuthenticated
+            isAuthenticated,
+            errors
         }}>
             {children}
         </AuthContext.Provider>
