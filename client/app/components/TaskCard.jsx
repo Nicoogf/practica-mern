@@ -2,6 +2,10 @@
 import React from 'react'
 import { useTask } from '../context/taskContext'
 import Link from 'next/link';
+import dayjs from 'dayjs';
+import utc from "dayjs/plugin/utc"
+dayjs.extend(utc)
+
 
 const TaskCard = ({task}) => {
     const { deleteTask } = useTask() ;
@@ -14,7 +18,7 @@ const TaskCard = ({task}) => {
             <button className='bg-red-400 p-2 rounded-md '
              onClick={ ()=>deleteTask(task._id)}> 
              Borrar </button>
-            <p> { new Date(task.date).toLocaleDateString()  } </p>
+            <p> {dayjs(task.date).utc().format("DD/MM/YYYY")  } </p>
         </article>
     )
 }
