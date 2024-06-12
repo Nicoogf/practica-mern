@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "./context/authContext";
 import { TaskProvider } from "./context/taskContext";
 import Navbar from "./components/Navbar";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,10 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>   
+      <body className={inter.className}>
         <AuthProvider>
+          <Navbar />
           <TaskProvider>           
-            <Navbar />
             {children}
           </TaskProvider>
         </AuthProvider>
