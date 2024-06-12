@@ -5,19 +5,18 @@ import { useTask } from '../context/taskContext';
 
 
 const TaskFormPage = () => {
-    const { register , handleSubmit } = useForm()
-    const { createTask } = useTask()
-    console.log(createTask())
-   
-    const onSubmit = handleSubmit( (data)  =>{
-        console.log( data )
-    })
+    const { register, handleSubmit } = useForm();
+    const { createTask } = useTask();
+
+    const onSubmit = handleSubmit((data) => {
+        createTask(data);
+    });
 
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
         <form onSubmit={onSubmit} className="flex flex-col gap-y-2 text-black">
             <input type='text' placeholder='Ingresar tarea' className='w-[250px] block mx-auto rounded-md py-1 px-3'
-            {...register("tittle")}
+            {...register("title")}
             autoFocus
             />
             <textarea rows={3} placeholder='descripcion'
