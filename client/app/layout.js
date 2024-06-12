@@ -18,8 +18,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthProvider>
           <Navbar />
-          <TaskProvider>           
+          <TaskProvider> 
+            <main className="w-[80%] max-w-[1280px] mx-auto">
             {children}
+            </main>                    
           </TaskProvider>
         </AuthProvider>
       </body>

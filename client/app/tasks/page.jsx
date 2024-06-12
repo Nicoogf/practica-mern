@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useAuth } from '../context/authContext';
 import { useRouter } from 'next/navigation'
 import { useTask } from '../context/taskContext';
+import TaskCard from '../components/TaskCard';
 
 
 
@@ -13,8 +14,7 @@ const TasksPage = () => {
   const {getTasks, tasks } = useTask() ; 
 
   if( !loading && !isAuthenticated) return router.push("/loguin")
-  console.log(loading ,isAuthenticated )
- console.log(tasks)
+ 
 
   useEffect( () =>{
     getTasks()
@@ -25,12 +25,9 @@ const TasksPage = () => {
       <h1> Listado de Tareas </h1>
       <section>
         { loading && <p> Cargando ...</p>}
-        <div>
+        <div className='grid grid-cols-3 gap-2'>
           {tasks.map( (task) => (
-            <div className='bg-blue-800 p-2' key={task._id}>
-              <p> {task.title} </p>  
-              <p> {task.description} </p>
-            </div> 
+            <TaskCard key={task.id} task={task} />
           ))}
         </div>
       </section>

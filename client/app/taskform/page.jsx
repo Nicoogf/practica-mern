@@ -2,14 +2,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useTask } from '../context/taskContext';
+import { useRouter } from 'next/navigation'
 
 
 const TaskFormPage = () => {
     const { register, handleSubmit } = useForm();
     const { createTask } = useTask();
+    const router = useRouter()
 
     const onSubmit = handleSubmit((data) => {
         createTask(data);
+        router.push("/tasks")
     });
 
   return (
