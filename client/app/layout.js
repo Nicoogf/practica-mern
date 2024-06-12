@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <h1>Alien duce </h1>
         <AuthProvider>
           <TaskProvider>
             <h1>Hola mundo</h1>

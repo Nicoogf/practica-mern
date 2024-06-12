@@ -27,6 +27,10 @@ const RegisterPage = () => {
     signup(values)
   })
 
+  useEffect( () => {
+    if(isAuthenticated) router.push("/tasks")
+  },[isAuthenticated])
+
   return (
     <main  className='flex flex-col justify-center items-center h-screen'>
 

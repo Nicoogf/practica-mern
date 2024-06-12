@@ -1,18 +1,25 @@
 "use client";
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../context/authContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 const LoguinPage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const { signin, errors: signinErrors } = useAuth();
+  const { signin, errors: signinErrors, isAuthenticated } = useAuth();
+
+  const router = useRouter()
 
   const onSubmit = handleSubmit(data => {
     signin(data)
   })
+  
+  useEffect( () => {
+    if(isAuthenticated) router.push("/tasks")
+  },[isAuthenticated])
 
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
