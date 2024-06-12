@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-import { createTaskRequest, deleteTaskRequest, getTaskRequest, getTasksRequest } from "../api/task";
+import { createTaskRequest, deleteTaskRequest, getTaskRequest, getTasksRequest, updateTaskRequest } from "../api/task";
 
 
 const TaskContext = createContext()
@@ -61,6 +61,15 @@ export function TaskProvider({ children }) {
 
     }
 
+    const updateTask = async(id, task ) => {
+        try {
+         await  updateTaskRequest(id , task)
+        } catch (error) {
+            
+        }
+       
+    }
+
     return (
         <TaskContext.Provider
             value={{
@@ -68,7 +77,8 @@ export function TaskProvider({ children }) {
                 createTask,
                 getTasks,
                 deleteTask,
-                getTask
+                getTask,
+                updateTask
             }}>
 
             {children}

@@ -8,24 +8,27 @@ import { useParams } from 'next/navigation'
 
 
 const TaskIdPage = () => {
-  const { register, handleSubmit , setValue} = useForm();
-  const { createTask, getTask } = useTask();
+  const { register, handleSubmit, setValue } = useForm();
+  const { getTask, updateTask } = useTask();
+  const params = useParams()
   const router = useRouter()
 
   const onSubmit = handleSubmit((data) => {
-    createTask(data);
+    updateTask(params.id, data);
     router.push("/tasks")
   });
 
-  const params = useParams()
+
 
   useEffect(() => {
     async function loadTask() {
       if (params.id) {
         const task = await getTask(params.id)
-        setValue("title" ,task.title )
+        setValue("title", task.title)
+        setValue("description", task.description)
       }
     }
+    loadTask()
   }, [])
 
 
